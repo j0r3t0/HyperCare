@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>HyperCare — Luxury Sports Car Care</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0b0b0b;--card:#0f1113;--accent:#d4a017;--muted:#9b9b9b;--glass:rgba(255,255,255,0.04)}
+    *{box-sizing:border-box;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
+    body{margin:0;background:linear-gradient(180deg,#050506 0%, #0b0b0b 100%);color:#eaeaea;line-height:1.5}
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+    header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+    .logo{display:flex;gap:12px;align-items:center}
+    .logo .mark{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#ffd27a);display:flex;align-items:center;justify-content:center;color:#0b0b0b;font-weight:800}
+    nav a{color:var(--muted);margin-left:18px;text-decoration:none;font-weight:600}
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:32px;padding:36px 0;align-items:center}
+    .hero h1{font-size:36px;margin:0 0 12px}
+    .hero p{color:var(--muted);margin:0 0 20px}
+    .cta{display:flex;gap:12px}
+    .btn{background:var(--accent);border:none;padding:12px 18px;border-radius:10px;color:#070707;font-weight:700;cursor:pointer}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:20px;border-radius:12px;box-shadow:0 6px 24px rgba(0,0,0,0.6)}
+    .services{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+    .service{padding:16px;background:var(--card);border-radius:10px}
+    .service h3{margin:6px 0 8px}
+    .grid-two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    footer{border-top:1px solid rgba(255,255,255,0.03);padding:24px 0;margin-top:36px;color:var(--muted)}
+    .partners{display:flex;gap:12px;flex-wrap:wrap}
+    .partner{background:var(--glass);padding:10px 14px;border-radius:8px;font-weight:600}
+    /* responsive */
+    @media (max-width:980px){.hero{grid-template-columns:1fr} .services{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:600px){.services{grid-template-columns:1fr}.container{padding:18px}}
+    /* modal */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(3,3,3,0.6);z-index:40}
+    .modal.open{display:flex}
+    .modal .content{width:680px;max-width:96%;background:#070707;padding:20px;border-radius:12px}
+    label{display:block;margin-top:12px;color:var(--muted);font-size:14px}
+    input,select,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;margin-top:6px}
+    .small{font-size:13px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <div class="mark">HC</div>
+        <div>
+          <div style="font-weight:800">HyperCare</div>
+          <div class="small">Luxury sports car concierge</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#services">Услуги</a>
+        <a href="#partners">Партньори</a>
+        <a href="#booking">Запази час</a>
+        <a href="#contact">Контакт</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h1>Пълна грижа за твоя hypercar — на едно обаждане</h1>
+        <p>Посредник за премиум услуги: мивки, детайлинг, писта инструктори, технически прегледи, смяна гуми и още. Ние организираме, ти се наслаждаваш.</p>
+        <div class="cta">
+          <button class="btn" onclick="openBooking()">Запази час</button>
+          <button class="btn ghost" onclick="openServices()">Виж услуги</button>
+        </div>
+
+        <div class="card" style="margin-top:20px">
+          <strong>Как работи</strong>
+          <div class="grid-two" style="margin-top:12px">
+            <div>
+              <div class="small">1. Избираш услуга</div>
+              <div class="small">2. Ние организираме взимане/доставка и изпълнител</div>
+            </div>
+            <div>
+              <div class="small">3. Плащаш онлайн или при предаване</div>
+              <div class="small">4. Получаваш пълен отчет и снимки</div>
+            </div>
+          </div>
+        </div>
+
+        <section id="services" style="margin-top:20px">
+          <h2>Популярни услуги</h2>
+          <div class="services">
+            <div class="service card">
+              <strong>Автомивка & Детайлинг</strong>
+              <p class="small">Премиум изплакване, ръчен детайлинг, защита на боя.</p>
+              <button class="btn" onclick="openServiceDetail('Автомивка')">Виж</button>
+            </div>
+            <div class="service card">
+              <strong>Смяна гуми & Съхранение</strong>
+              <p class="small">Зазимяване, баланс и съхранение в климатизиран склад.</p>
+              <button class="btn" onclick="openServiceDetail('Смяна гуми')">Виж</button>
+            </div>
+            <div class="service card">
+              <strong>Поддръжка писта & Инструктор</strong>
+              <p class="small">Подготовка за писта, водач/инструктор, следпистова проверка.</p>
+              <button class="btn" onclick="openServiceDetail('Писта')">Виж</button>
+            </div>
+            <div class="service card">
+              <strong>Технически преглед & Обслужване</strong>
+              <p class="small">Пълен сервиз, диагностика и прегледи преди писта.</p>
+              <button class="btn" onclick="openServiceDetail('Техник')">Виж</button>
+            </div>
+            <div class="service card">
+              <strong>Чип тунинг & Изпускателни системи</strong>
+              <p class="small">Свързваме те с изпълнители за повишаване на мощността.</p>
+              <button class="btn" onclick="openServiceDetail('Чип')">Виж</button>
+            </div>
+            <div class="service card">
+              <strong>Застраховки & Логистика</strong>
+              <p class="small">Помощ при избор на полица и транспорт.</p>
+              <button class="btn" onclick="openServiceDetail('Застраховки')">Виж</button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <aside>
+        <div class="card">
+          <h3>Запази услуга</h3>
+          <p class="small">Попълни бърза форма и ние ще се свържем за потвърждение.</p>
+
+          <form id="bookingForm" name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="booking">
+            <p style="display:none"> <label>Don’t fill this out: <input name="bot-field"></label></p>
+            <label>Име</label>
+            <input name="name" required />
+            <label>Телефон</label>
+            <input name="phone" required />
+            <label>Имейл</label>
+            <input name="email" type="email" />
+            <label>Услуга</label>
+            <select name="service">
+              <option>Автомивка & Детайлинг</option>
+              <option>Смяна гуми & Съхранение</option>
+              <option>Поддръжка писта & Инструктор</option>
+              <option>Технически преглед</option>
+              <option>Чип тунинг / Модификации</option>
+              <option>Застраховки / Логистика</option>
+            </select>
+            <label>Локация (адрес)</label>
+            <input name="address" />
+            <label>Допълнителна информация</label>
+            <textarea name="notes" rows="4"></textarea>
+            <div style="margin-top:12px;display:flex;gap:8px">
+              <button type="submit" class="btn">Изпрати заявка</button>
+              <button type="button" class="btn ghost" onclick="mailtoBooking()">Изпрати по имейл</button>
+            </div>
+          </form>
+
+          <p class="small" style="margin-top:10px">За интегриране на плащания и резервации онлайн можем да добавим Stripe + календар (Calendly) по-късно.</p>
+        </div>
+
+        <div style="height:18px"></div>
+
+        <div class="card">
+          <h4>Контакт</h4>
+          <div class="small">info@hypercare.example</div>
+          <div class="small">+359 8X XXX XXXX</div>
+        </div>
+      </aside>
+
+    </section>
+
+    <section id="partners" style="margin-top:26px">
+      <h2>Партньори</h2>
+      <div class="partners">
+        <div class="partner">Premium Wash Co.</div>
+        <div class="partner">Track Support Ltd.</div>
+        <div class="partner">Elite Tires</div>
+        <div class="partner">Performance Tuning</div>
+        <div class="partner">SafeTransport</div>
+      </div>
+    </section>
+
+    <footer id="contact">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <strong>HyperCare</strong>
+          <div class="small">Luxury sports car concierge</div>
+        </div>
+        <div class="small">Създаване: HyperCare • Всички права запазени ©</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modal detail -->
+  <div id="modal" class="modal" role="dialog" aria-hidden="true">
+    <div class="content card">
+      <button onclick="closeModal()" style="float:right;background:transparent;border:none;color:var(--muted);font-weight:700">✕</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+<script>
+  function openServices(){location.href='#services'}
+  function openBooking(){location.href='#booking';document.getElementById('bookingForm').scrollIntoView({behavior:'smooth'})}
+  function openServiceDetail(name){
+    const descriptions = {
+      'Автомивка':'Пълен премиум ръчен детайлинг: пране, вакса, полиране, керамично покритие по заявка. Ние организираме взимане и връщане на автомобила.',
+      'Смяна гуми':'Баланс, смяна, съхранение в климатизиран склад, проверка на спирачки и окачване при поискване.',
+      'Писта':'Подготовка за писта, инструктор, бутилка с данни, мониторинг и следпистово обслужване.',
+      'Техник':'Сервизна проверка, диагностика, основни ремонти и препоръки от доверени сервизи.',
+      'Чип':'Чип тунинг и изпускателни системи от сертифицирани изпълнители. Тестове на динамо при поискване.',
+      'Застраховки':'Сравнение на оферти, съдействие при избор на полица за суперколи и логистика при инциденти.'
+    };
+    document.getElementById('modalBody').innerHTML = '<h3>'+name+'</h3><p class="small">'+descriptions[name]+'</p><div style="margin-top:12px"><button class="btn" onclick="openBooking()">Запази '+name+'</button></div>';
+    document.getElementById('modal').classList.add('open');
+  }
+  function closeModal(){document.getElementById('modal').classList.remove('open')}
+  function mailtoBooking(){
+    const form = document.getElementById('bookingForm');
+    const data = new FormData(form);
+    const parts = [];
+    for(const [k,v] of data.entries()){parts.push(k+': '+v)}
+    const body = encodeURIComponent(parts.join('\n'));
+    window.location.href = 'mailto:info@hypercare.example?subject=Заявка%20за%20услуга&body='+body;
+  }
+</script>
+</body>
+</html>
